@@ -12,14 +12,17 @@ namespace BarnYardPolitics.Game
         public void GameStart()
         {
             bool gameRunning = true;
+            
             // Collect Connected Players.
             List<Player> connectedPlayers = new List<Player>()
             {
                 new Player() { Username="Bond123", Password="1234", FriendlyName="Norman", LastKnownIp="127.0.0.1" },
                 new Player() { Username="James123", Password="1234", FriendlyName="Brunswick", LastKnownIp="127.0.0.1" }
             };
+
+            Player[] playerOrder = new Player[connectedPlayers.Count];
             //Assign Each player a Die Roll
-            foreach(Player player in connectedPlayers)
+            foreach (Player player in connectedPlayers)
             {
                 int playerDiceRoll = DiceRoll();
                 player.DiceRoll = playerDiceRoll;
