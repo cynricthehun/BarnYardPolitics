@@ -11,9 +11,19 @@ namespace BarnYardPolitics.Game
     {
         public void GameStart()
         {
-            bool gameStarted = true;
+            bool gameRunning = true;
             // Collect Connected Players.
-            List<Player> connectedPlayers = new List<Player>();
+            List<Player> connectedPlayers = new List<Player>()
+            {
+                new Player() { Username="Bond123", Password="1234", FriendlyName="Norman", LastKnownIp="127.0.0.1" },
+                new Player() { Username="James123", Password="1234", FriendlyName="Brunswick", LastKnownIp="127.0.0.1" }
+            };
+            //Assign Each player a Die Roll
+            foreach(Player player in connectedPlayers)
+            {
+                int playerDiceRoll = DiceRoll();
+                player.DiceRoll = playerDiceRoll;
+            }
             // Decide which player goes first by dice roll.
             // Assign the turn order based off the dice roll.
             int[] TurnOrder = new int[connectedPlayers.Count];
@@ -34,6 +44,14 @@ namespace BarnYardPolitics.Game
             }
             //Turn is ended and passed onto the next player in the turn order created in the GameStart.
         }
+        public bool EndGame()
+        {
+            // Declare Winner.
+            // Game Cleanup.
+            bool gameEnded = true;
+            return gameEnded;
+        }
+
         private void CheckPlayerInfluence(player)
         {
             if (player.influence = 0)
@@ -41,12 +59,13 @@ namespace BarnYardPolitics.Game
                 //remove player from turns.
             }
         }
-        public bool EndGame()
+        private int DiceRoll()
         {
-            // Declare Winner.
-            // Game Cleanup.
-            bool gameEnded = true;
-            return gameEnded;
+            int result;
+            Random rnd = new Random();
+
+            result = rnd.Next(1, 6);
+            return result;
         }
     }
 }

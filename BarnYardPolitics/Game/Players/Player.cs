@@ -8,9 +8,10 @@ namespace BarnYardPolitics.Game.Players
 {
     class Player
     {
-        private string _username;
-        private string _password;
-        private string _friendlyName;
-        private string _lastKnownIP;
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string FriendlyName { get; set; }
+        public string LastKnownIp { get; set; }
+        public int DiceRoll { get; set; }
     }
 }
